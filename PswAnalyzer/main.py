@@ -45,9 +45,9 @@ def analyze_password():
             suggestions.append("Use only ASCII characters")
             is_valid = False
 
-        if any(psw[i] == psw[i + 1] for i in range(len(psw) - 1)):
-            log.append(f"Password '{psw}' contains repeated characters.")
-            suggestions.append("Avoid repeated characters")
+        if any(psw[i] == psw[i + 1] == psw[i + 2] for i in range(len(psw) - 2)):
+            log.append(f"Password '{psw}' contains 3 repeated characters in a row.")
+            suggestions.append("Avoid 3 repeated characters in a row")
             is_valid = False
 
         results = {
