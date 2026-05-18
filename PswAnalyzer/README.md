@@ -264,11 +264,11 @@ def analyze\_password():  ***# Defines the main function of the program. This fu
 
 
 
-&#x20;       if any(psw\[i] == psw\[i + 1] for i in range(len(psw) - 1)):  **# Checks whether the password contains repeated consecutive characters, such as aa, 11, or !!.**
+&#x20;       if any(psw[i] == psw[i + 1] == psw[i + 2] for i in range(len(psw) - 2)):  **# Checks if at least one sequence of 3 repeated consecutive characters exists, compares 3 consecutive characters in the password, Iterates through the password while avoiding index overflow**
 
-&#x20;           log.append(f"Password '{psw}' contains repeated characters.")  ***# Adds a message to the log list explaining that repeated characters were found.***
+&#x20;           log.append(f"Password '{psw}' contains 3 repeated characters in a row.")  ***# Stores the validation event in the log***
 
-&#x20;           suggestions.append("Avoid repeated characters")  ***# Adds a suggestion telling the user to avoid repeated consecutive characters.***
+&#x20;           suggestions.append("Avoid 3 repeated characters in a row")  ***# Adds a suggestion to improve password quality***
 
 &#x20;           is\_valid = False  ***# Marks the password as invalid because it contains repeated consecutive characters.***
 
