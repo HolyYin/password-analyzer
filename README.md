@@ -131,10 +131,10 @@ def analyze_password():  # Defines the main function of the program. This functi
             suggestions.append("Use only ASCII characters")  # Adds a suggestion telling the user to use only ASCII characters.
             is_valid = False  # Marks the password as invalid because it contains non-ASCII characters.
 
-        if any(psw[i] == psw[i + 1] for i in range(len(psw) - 1)):  # Checks whether the password contains repeated consecutive characters, such as aa, 11, or !!.
-            log.append(f"Password '{psw}' contains repeated characters.")  # Adds a message to the log list explaining that repeated characters were found.
-            suggestions.append("Avoid repeated characters")  # Adds a suggestion telling the user to avoid repeated consecutive characters.
-            is_valid = False  # Marks the password as invalid because it contains repeated consecutive characters.
+        if any(psw[i] == psw[i + 1] == psw[i + 2] for i in range(len(psw) - 2)): # Checks if at least one sequence of 3 repeated consecutive characters exists, Compares 3 consecutive characters in the password, Iterates through the password while avoiding index overflow
+            log.append(f"Password '{psw}' contains 3 repeated characters in a row.") # Stores the validation event in the log
+            suggestions.append("Avoid 3 repeated characters in a row") # Adds a suggestion to improve password quality
+            is_valid = False # Marks the password as invalid
 
         results = {  # Creates a dictionary called results. Each key represents a password requirement, and each value is either True or False.
             "symbols": any(c in string.punctuation for c in psw),  # Checks whether the password contains at least one punctuation symbol.
